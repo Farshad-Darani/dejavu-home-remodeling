@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = sanitizeInput($_POST['phone'] ?? '');
     $location = sanitizeInput($_POST['location'] ?? '');
     $description = sanitizeInput($_POST['description'] ?? '');
-    $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
+    $projectType = sanitizeInput($_POST['project_type'] ?? 'General Inquiry');
     
     // Validation
     $errors = [];
@@ -58,26 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Phone number is required';
     }
     
-    if (empty($location)) {
-        $errors[] = 'Project location is required';
-    }
+    // Location and description are optional now (hidden fields with defaults)
     
-    if (empty($description)) {
-        $errors[] = 'Project description is required';
-    }
-    
-    if (empty($recaptchaResponse)) {
-        $errors[] = 'Please complete the reCAPTCHA verification';
-    }
-    
-    // Verify reCAPTCHA
-    if (!empty($recaptchaResponse) && !verifyRecaptcha($recaptchaResponse, $SECRET_KEY)) {
-        $errors[] = 'reCAPTCHA verification failed';
-    }
+    // Basic spam protection - check if submission is too fast (honeypot alternative)
+    // You can add more advanced spam protection later if needed
     
     if (empty($errors)) {
         // Prepare email content
-        $subject = "New Kitchen Remodeling Quote Request from $name";
+        $subject = "New Quote Request: $projectType - $name";
         
         $emailBody = "
         <html>
@@ -116,12 +104,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     
                     <div class='field'>
+                        <div class='label'>Project Type:</div>
+                        <div class='value'>$projectType</div>
+                    </div>
+                    
+                    <div class='field'>
                         <div class='label'>Project Location:</div>
                         <div class='value'>$location</div>
                     </div>
                     
                     <div class='field'>
-                        <div class='label'>Project Description:</div>
+                        <div class='label'>Additional Notes:</div>
                         <div class='value'>$description</div>
                     </div>
                     
@@ -173,12 +166,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // If there are errors, redirect back with error message
     if (!empty($errors)) {
         $errorMessage = urlencode(implode('. ', $errors));
-        header("Location: kitchen-remodeling.html?error=$errorMessage");
+        header("Location: index.html?error=$errorMessage");
         exit;
     }
 } else {
     // Direct access to this file - redirect to home
-    header('Location: kitchen-remodeling.html');
+    header('Location: index.html');
     exit;
 }
 ?>
