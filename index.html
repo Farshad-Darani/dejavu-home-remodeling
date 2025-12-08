@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitchen Remodeling - SoCal Custom Kitchen</title>
+    <title>Kitchen & Bathroom Remodeling in Orange County | DejaVu Home</title>
     
     <!-- Status bar and theme colors for mobile browsers -->
     <meta name="theme-color" content="#1A2332">
@@ -27,7 +27,7 @@
                 <i class="fas fa-phone"></i>
                 <span>+1 (949) 416-4471</span>
             </a>
-            <div class="top-message">Claim Your <strong>Free</strong> On-Site Consultation</div>
+            <div class="top-message">Claim Your <strong>Free</strong> In-Home Consultation</div>
         </div>
     </div>
     
@@ -72,12 +72,12 @@
                 <div class="kitchen-hero-box">
                     <!-- Trust Line -->
                     <div class="kitchen-trust-line">
-                        Licensed | Insured | Based in Irvine, CA | Free On-Site Consultations
+                        Licensed | Insured | Based in Irvine, CA | Free In-Home Consultations
                     </div>
                     
                     <!-- Main Headline -->
                     <h1 class="kitchen-hero-headline">
-                        HOME REMODELING IN <br><span class="highlight">ORANGE COUNTY</span>
+                        <span class="no-wrap">HOME REMODELING</span> <br class="mobile-break">IN <br><span class="highlight">ORANGE COUNTY</span>
                     </h1>
                     
                     <!-- Desktop Subheadline -->
@@ -95,7 +95,7 @@
                     
                     <!-- CTA Buttons -->
                     <div class="kitchen-hero-cta">
-                        <a href="javascript:void(0)" onclick="document.getElementById('quote-form-anchor').scrollIntoView({behavior: 'smooth', block: 'start'})" class="btn btn-primary btn-large">GET FREE QUOTE</a>
+                        <a href="javascript:void(0)" onclick="openQuoteModal()" class="btn btn-primary btn-large">GET FREE QUOTE</a>
                         <a href="tel:+19494164471" class="btn btn-secondary btn-large desktop-only">CALL NOW</a>
                     </div>
                 </div>
@@ -279,7 +279,7 @@
                 <!-- Introduction Content (Right Side) -->
                 <div class="intro-content">
                     <div class="intro-header">
-                        <h2 class="intro-title">Expert Kitchen & Bathroom Remodeling</h2>
+                        <h2 class="intro-title">#1 Kitchen & Bathroom Remodeling in OC</h2>
                         <div class="intro-underline"></div>
                     </div>
                     
@@ -344,10 +344,10 @@
             <!-- Row 4: Outdoor Living - Image Left, Text Right -->
             <div class="service-row reverse">
                 <div class="service-image">
-                    <img src="images/outdoor-living.jpeg" alt="Outdoor Living Spaces">
+                    <img src="images/outdoor-living.jpeg" alt="Outdoor Living Spaces & ADU">
                 </div>
                 <div class="service-content">
-                    <h2 class="service-title">Outdoor Living Spaces</h2>
+                    <h2 class="service-title">Outdoor Living Spaces & ADU</h2>
                     <p class="service-description">Extend your living space outdoors with our <strong style="color: #E9C46A;">custom outdoor design and construction</strong> services. We create <strong style="color: #E9C46A;">beautiful patios, outdoor kitchens, and entertainment areas</strong> that seamlessly blend with your home's aesthetic. From <strong style="color: #E9C46A;">pergolas and decking</strong> to <strong style="color: #E9C46A;">fire features and outdoor lighting</strong>, we design spaces perfect for California living. Transform your backyard into an <strong style="color: #E9C46A;">outdoor oasis</strong> where you can relax, entertain, and enjoy Orange County's beautiful weather year-round.</p>
                     <a href="javascript:void(0)" onclick="document.getElementById('quote-form-anchor').scrollIntoView({behavior: 'smooth', block: 'start'})" class="service-cta-btn">Free Outdoor Design Estimate</a>
                 </div>
@@ -641,6 +641,9 @@
                     <div class="kitchen-gallery-slide">
                         <img src="images/custom-bathroom-design-laguna-beach.jpeg" alt="Custom Bathroom Design Laguna Beach">
                     </div>
+                    <div class="kitchen-gallery-slide">
+                        <img src="images/modern-kitchen-remodel-orange-county.jpeg" alt="Modern Kitchen Remodel Orange County">
+                    </div>
                 </div>
                 
                 <!-- Navigation Arrows -->
@@ -663,6 +666,7 @@
                     <span class="dot" onclick="currentKitchenSlide(8)"></span>
                     <span class="dot" onclick="currentKitchenSlide(9)"></span>
                     <span class="dot" onclick="currentKitchenSlide(10)"></span>
+                    <span class="dot" onclick="currentKitchenSlide(11)"></span>
                 </div>
             </div>
         </div>
@@ -1066,6 +1070,11 @@
             
             .quote-section .quote-content {
                 grid-template-columns: 1fr !important;
+            }
+            
+            .quote-modal-close {
+                top: 2px;
+                right: 2px;
             }
         }
     </style>

@@ -1376,6 +1376,11 @@ body {
 
 /* Desktop - Keep existing layout and show dots */
 @media (min-width: 769px) {
+    /* Hide mobile break on desktop */
+    .kitchen-hero-headline .mobile-break {
+        display: none;
+    }
+    
     /* Show dots on desktop */
     .hero-dots {
         display: flex !important;
@@ -3812,9 +3817,25 @@ html, body {
     }
     
     .kitchen-hero-headline {
-        font-size: 2rem; /* Slightly smaller for mobile */
+        font-size: 2rem !important; /* Ensure consistent size for all mobile */
         margin-bottom: 0.8rem; /* Reduced margin */
         line-height: 1.2;
+    }
+    
+    .kitchen-hero-headline .highlight {
+        font-size: 2rem !important; /* Match parent font size */
+        white-space: nowrap; /* Keep ORANGE COUNTY on one line */
+        display: inline-block;
+    }
+    
+    .kitchen-hero-headline .no-wrap {
+        white-space: nowrap; /* Keep HOME REMODELING on one line */
+        display: inline-block;
+    }
+    
+    /* Show mobile break only on mobile */
+    .kitchen-hero-headline .mobile-break {
+        display: inline;
     }
     
     .kitchen-hero-subheadline {
@@ -3969,32 +3990,59 @@ html, body {
     }
 }
 
-/* Extra Small Screens (iPhone SE and smaller) - 375px and below */
-@media (max-width: 375px) {
+/* Small Mobile Screens (up to 768px - matches kitchen-hero-cta button sizing) */
+@media (max-width: 768px) {
     .hero-phone-link {
-        font-size: 1.4rem;
-        padding: 0.5rem 1.5rem;
-        gap: 0.6rem;
-        border-radius: 10px;
+        font-size: 1.2rem;
+        padding: 1.2rem 2rem;
+        gap: 0.8rem;
+        border-radius: 8px;
+        white-space: nowrap;
+        display: inline-flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        line-height: 1;
+        min-height: auto;
+        box-sizing: border-box;
     }
     
     .hero-phone-link i {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        line-height: 1;
+        display: flex;
+        align-items: center;
     }
     
     .hero-phone-link span {
         white-space: nowrap;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Extra Small Screens (iPhone SE and smaller) - 375px and below */
+@media (max-width: 375px) {
+    .hero-phone-link {
+        font-size: 0.95rem;
+        padding: 0.75rem 1.5rem;
+        gap: 0.5rem;
+        min-width: 150px;
     }
     
-    /* Ensure single line display */
-    .hero-phone-link {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 280px;
-        max-width: 320px;
-        width: auto;
+    .hero-phone-link i {
+        font-size: 0.95rem;
+    }
+    
+    .hero-phone-link span {
+        font-size: 0.95rem;
     }
 }
 
@@ -4779,7 +4827,7 @@ html, body {
     }
     
     .service-title::after {
-        width: 90px;
+        width: 450px;
         margin: 0.9rem auto 1.2rem auto;
     }
     
@@ -4953,6 +5001,15 @@ html, body {
     .intro-gallery-content {
         grid-template-columns: 1fr;
         gap: 1rem;
+    }
+    
+    /* Show text first, then gallery on mobile */
+    .intro-content {
+        grid-row: 1;
+    }
+    
+    .intro-gallery-slider {
+        grid-row: 2;
     }
     
     /* Gallery optimizations for mobile */
@@ -5308,10 +5365,19 @@ html, body {
         padding: 2rem 0;
     }
     
+    .kitchen-gallery .container {
+        padding: 0;
+        max-width: 100%;
+    }
+    
     .kitchen-gallery-blade-underline {
         width: 320px;
         height: 3px;
         margin: 0.1rem auto -1rem auto;
+    }
+    
+    .kitchen-gallery .section-header {
+        padding: 0 1rem;
     }
     
     .kitchen-gallery .section-header h2 {
@@ -5325,13 +5391,15 @@ html, body {
     }
     
     .kitchen-gallery-slider {
-        margin: 0 auto;
-        max-width: 90vw;
+        margin: 0;
+        max-width: 100%;
+        width: 100vw;
+        border-radius: 0;
     }
     
     .kitchen-gallery-slides {
-        height: 60vw; /* Mobile: 90vw width × 2/3 = 60vw height for 3:2 aspect ratio */
-        max-height: 350px; /* Prevent it from getting too tall on larger phones */
+        height: 66.67vw; /* Full width with 3:2 aspect ratio (100vw × 2/3) */
+        max-height: none;
     }
     
     .kitchen-gallery-slide img {
@@ -6251,7 +6319,7 @@ html, body {
     }
     
     .nav2-logo .logo {
-        height: 60px;
+        height: 65px;
         left: 1rem;
         top: 25%;
         margin-top: 0;
@@ -6268,8 +6336,8 @@ html, body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 30px;
-        height: 30px;
+        width: 38px;
+        height: 38px;
         cursor: pointer;
         position: relative;
         z-index: 3;
@@ -6277,8 +6345,8 @@ html, body {
     
     /* Hamburger lines */
     .hamburger-line {
-        width: 26px;
-        height: 3.5px;
+        width: 32px;
+        height: 4px;
         background: #ffffff;
         margin: 2px 0;
         transition: all 0.3s ease;
